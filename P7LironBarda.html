@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorial Page for Liron Barda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('pics/BACKG_UP.jpeg'); /* Add your background image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            color: #ffffff; /* Text color changed to white */
+            position: relative; /* Position relative for absolute children */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.8); /* Dark background for readability */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff; /* Title color */
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .details {
+            margin: 20px 0;
+        }
+
+            .details h2 {
+                color: #ffffff; /* Details header color */
+            }
+
+        .memories {
+            background: rgba(255, 255, 255, 0.1); /* Slightly visible white for memories section */
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #ffffff; /* Footer color */
+        }
+
+        /* Popup Styles */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            width: 500px; /* Fixed width for popup */
+            text-align: center; /* Center the text */
+        }
+
+        .popup-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 500;
+        }
+
+        .close-popup {
+            cursor: pointer;
+            color: red; /* Close button color */
+            margin-top: 10px;
+        }
+
+        /* Navigation Bar Styles */
+        .navbar {
+            display: flex;
+            justify-content: center; /* Centering the content */
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8); /* Dark background for navbar */
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+            .navbar button {
+                color: #ffffff; /* Button text color */
+                border: 1px solid #ffffff; /* White border */
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                background: transparent; /* No background */
+                font-weight: bold; /* Bold text */
+                text-transform: uppercase; /* Uppercase text */
+                margin: 0 10px; /* Margin for spacing */
+            }
+
+        audio {
+            width: 200px;
+            /* Change the color of the audio controls */
+            filter: invert(1) hue-rotate(180deg) brightness(0.7);
+        }
+
+        .comment-section {
+            position: fixed; /* Fixed position */
+            bottom: 20px; /* Distance from the bottom */
+            right: 20px; /* Distance from the right */
+            background: rgba(0, 0, 0, 0.8); /* Dark background for comment section */
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 300px; /* Maximum width for the comment box */
+            z-index: 200; /* Ensure it is above other elements */
+            height: 250px; /* Fixed height for the comment section */
+            overflow: auto; /* Allow scrolling */
+        }
+
+            .comment-section h2 {
+                color: #ffffff; /* Comment section header color */
+                margin: 0 0 10px; /* Margin below heading */
+            }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .comment-form input, .comment-form textarea {
+                margin: 5px 0;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc; /* Light border for inputs */
+            }
+
+            .comment-form button {
+                margin-top: 10px;
+                padding: 10px;
+                border: none;
+                border-radius: 5px;
+                background: #ffffff; /* Button background color */
+                color: #000; /* Button text color */
+                cursor: pointer;
+            }
+
+        .comment {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1); /* Slightly visible background for comments */
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <button onclick="location.href='P1Gallery.html'">BACK TO GALLERY</button>
+        <audio controls>
+            <source src="music/enchanting-dulcimer-dreams-165869.mp3" type="audio/mpeg"> <!-- Replace with your audio file -->
+        </audio>
+        <h1 style="flex: 1; text-align: center;">THEIR GARDEN</h1> <!-- Center the title -->
+        <button onclick="showCandlePopup()">In Their Memory</button>
+    </div>
+
+    <!-- Popup Overlay -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+
+    <!-- Popup Content -->
+    <div class="popup" id="popup">
+        <p>
+            <img src=pics/yizkor2.jpg alt="Eden Alon Levy" style="width: 500px">
+        </p>
+        <span class="close-popup" id="closePopup">Close</span>
+    </div>
+
+    <div class="container">
+        <h1>
+            In Loving Memory of Liron Barda
+        </h1>
+        <img src="pics/LIRONBARDA.png" alt="Eden Alon Levy" style="width: 260px">
+        <img src="pics/LIRONBARDA2.png" alt="Eden Alon Levy" style="width: 190px">
+        <img src="pics/LIRONBARDA3.png" alt="Eden Alon Levy" style="width: 185px">
+
+        <div class="details">
+            <h2>Biography</h2>
+            <p>
+                Liron Barda, 26, from Shaarei Tikva, worked as the bar manager at the Nova Festival during the terrorist attack on October 7, 2023. When the attackers began to invade the area, her friends urged her to escape with them. However, Liron chose to stay behind and provide first aid to the wounded. During the two hours she spent helping the injured, she maintained contact with her parents. Unfortunately, she was ultimately murdered along with another woman she was treating when the attackers reached their command center.
+
+                Her family and friends described Liron as a hero who sacrificed her life to save others. She is remembered as a warm, loving person with a free spirit. Her family dedicated a song by Shlomi Shabat as part of a memorial project, reflecting their love for her and recalling her smile and dimples, which were among her defining traits.
+
+                Liron is remembered in her community as someone who radiated love and light, leaving behind a grieving but proud family
+            </p>
+        </div>
+
+        <div class="memories">
+            <h2>Memories</h2>
+            <p>
+                Many memorial initiatives have been established in her honor.
+                A tirbu song to Liron
+            </p>
+            <iframe width="640" height="360" src="https://www.youtube.com/embed/fBsl43Ffoy0"
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Comment Section -->
+    <div class="comment-section">
+        <h2>Leave a Comment</h2>
+        <form class="comment-form" id="commentForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <textarea id="comment" rows="4" placeholder="Your Comment" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="commentsList" style="max-height: 180px; overflow-y: auto;">
+            <!-- Comments will be appended here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>Gone but never forgotten.</p>
+    </footer>
+
+    <script>
+        // Memorial Button Click Event
+        const popup = document.getElementById('popup');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const closePopup = document.getElementById('closePopup');
+
+        // Function to Show Candle Popup
+        function showCandlePopup() {
+            popup.style.display = 'block';
+            popupOverlay.style.display = 'block';
+        }
+
+        // Close Popup
+        closePopup.addEventListener('click', function () {
+            popup.style.display = 'none';
+            popupOverlay.style.display = 'none';
+        });
+
+        // Comment Submission
+        const commentForm = document.getElementById('commentForm');
+        const commentsList = document.getElementById('commentsList');
+
+        commentForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+
+            // Create comment element
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+            commentElement.innerHTML = `<strong>${name}:</strong> ${comment}`;
+
+            // Append comment to comments list
+            commentsList.appendChild(commentElement);
+
+            // Clear the form fields
+            commentForm.reset();
+        });
+    </script>
+
+</body>
+</html>
